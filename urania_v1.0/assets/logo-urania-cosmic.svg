@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="cosmic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"></stop>
+      <stop offset="35%" stop-color="#22d3ee"></stop>
+      <stop offset="70%" stop-color="#d946ef"></stop>
+      <stop offset="100%" stop-color="#ec4899"></stop>
+    </linearGradient>
+  </defs>
+  <text x="0" y="60" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-weight="700" font-size="64" letter-spacing="-1.5" fill="url(#cosmic)">Urania</text>
+</svg>

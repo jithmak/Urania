@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Urania · Input{% endblock %}
+
+{% block content %}
+
+<form method="post" action="/results" class="grid md:grid-cols-2 gap-6">
+
+  <!-- You -->
+  <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6">
+    <h2 class="text-lg font-semibold mb-4">You</h2>
+
+    <div class="space-y-4">
+      <input type="date" name="you_dob" required class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2" />
+      <input type="time" name="you_time" required class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2" />
+      <input type="text" name="you_place" placeholder="Place (optional)" class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2" />
+
+        <select name="you_lagna" class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2">
+            <option value="">Lagna (optional)</option>
+            <option value="Aries">Aries (මේෂ)</option>
+            <option value="Taurus">Taurus (වෘෂභ)</option>
+            <option value="Gemini">Gemini (මිථුන)</option>
+            <option value="Cancer">Cancer (කටක)</option>
+            <option value="Leo">Leo (සිංහ)</option>
+            <option value="Virgo">Virgo (කන්‍යා)</option>
+            <option value="Libra">Libra (තුලා)</option>
+            <option value="Scorpio">Scorpio (වෘශ්චික)</option>
+            <option value="Sagittarius">Sagittarius (ධනු)</option>
+            <option value="Capricorn">Capricorn (මකර)</option>
+            <option value="Aquarius">Aquarius (කුම්භ)</option>
+            <option value="Pisces">Pisces (මීන)</option>
+        </select>
+
+    </div>
+  </div>
+
+  <!-- Partner -->
+  <div class="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6">
+    <h2 class="text-lg font-semibold mb-4">Partner</h2>
+
+    <div class="space-y-4">
+      <input type="date" name="partner_dob" required class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2" />
+      <input type="time" name="partner_time" required class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2" />
+      <input type="text" name="partner_place" placeholder="Place (optional)" class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2" />
+
+      <select name="you_lagna" class="w-full rounded-lg bg-zinc-950 border border-zinc-800 px-3 py-2">
+            <option value="">Lagna (optional)</option>
+            <option value="Aries">Aries (මේෂ)</option>
+            <option value="Taurus">Taurus (වෘෂභ)</option>
+            <option value="Gemini">Gemini (මිථුන)</option>
+            <option value="Cancer">Cancer (කටක)</option>
+            <option value="Leo">Leo (සිංහ)</option>
+            <option value="Virgo">Virgo (කන්‍යා)</option>
+            <option value="Libra">Libra (තුලා)</option>
+            <option value="Scorpio">Scorpio (වෘශ්චික)</option>
+            <option value="Sagittarius">Sagittarius (ධනු)</option>
+            <option value="Capricorn">Capricorn (මකර)</option>
+            <option value="Aquarius">Aquarius (කුම්භ)</option>
+            <option value="Pisces">Pisces (මීන)</option>
+        </select>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="md:col-span-2 flex justify-end">
+    <button type="submit" class="rounded-xl bg-zinc-200 text-zinc-950 px-6 py-3 font-semibold">
+      Generate Compatibility
+    </button>
+  </div>
+
+</form>
+
+{% endblock %}

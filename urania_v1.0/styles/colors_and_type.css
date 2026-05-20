@@ -1,0 +1,279 @@
+/* ============================================================
+   Urania Design System — Tokens
+   colors, type, spacing, radii, shadows.
+   Import this file in any Urania-branded surface.
+   ============================================================ */
+
+/* Inter via Google Fonts — see fonts/README.md for substitution notes */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* -----------------------------------------
+     COLOR — Raw palette (Tailwind zinc scale)
+     ----------------------------------------- */
+  --zinc-50:  #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
+
+  /* -----------------------------------------
+     COLOR — Cosmic accent (V1 iridescent ring)
+     Used only on score-ring stroke + glass borders
+     ----------------------------------------- */
+  --cosmic-violet:   #8b5cf6;
+  --cosmic-magenta:  #d946ef;
+  --cosmic-pink:     #ec4899;
+  --cosmic-cyan:     #22d3ee;
+  --cosmic-indigo:   #6366f1;
+  --cosmic-gradient: linear-gradient(
+    135deg,
+    var(--cosmic-violet) 0%,
+    var(--cosmic-cyan) 35%,
+    var(--cosmic-magenta) 70%,
+    var(--cosmic-pink) 100%
+  );
+
+  /* -----------------------------------------
+     COLOR — Semantic surfaces
+     ----------------------------------------- */
+  --bg-page:       var(--zinc-950);
+  --bg-card:       rgba(24, 24, 27, 0.6);   /* zinc-900/60 */
+  --bg-card-solid: var(--zinc-900);
+  --bg-well:       rgba(9, 9, 11, 0.4);     /* zinc-950/40 */
+  --bg-button:     var(--zinc-200);
+  --bg-button-hover: var(--zinc-100);
+  --bg-button-press: var(--zinc-300);
+  --bg-secondary:  var(--zinc-900);
+  --bg-secondary-hover: var(--zinc-800);
+
+  /* Glass (cosmic mode) */
+  --glass-bg:      rgba(255, 255, 255, 0.04);
+  --glass-bg-strong: rgba(255, 255, 255, 0.06);
+  --glass-border:  rgba(255, 255, 255, 0.10);
+  --glass-border-strong: rgba(255, 255, 255, 0.16);
+  --glass-blur:    20px;
+
+  /* -----------------------------------------
+     COLOR — Semantic foreground
+     ----------------------------------------- */
+  --fg-1: var(--zinc-100);   /* headings, values, primary text */
+  --fg-2: var(--zinc-300);   /* body, list items */
+  --fg-3: var(--zinc-400);   /* labels, secondary */
+  --fg-4: var(--zinc-500);   /* micro, legal, captions */
+  --fg-on-primary: var(--zinc-950); /* text on light button */
+
+  /* -----------------------------------------
+     COLOR — Borders
+     ----------------------------------------- */
+  --border-card:     var(--zinc-800);
+  --border-strong:   var(--zinc-700);
+  --border-glass:    var(--glass-border);
+
+  /* -----------------------------------------
+     TYPE — Family
+     ----------------------------------------- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* -----------------------------------------
+     TYPE — Weight
+     ----------------------------------------- */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* -----------------------------------------
+     TYPE — Size ramp
+     (px values match Tailwind's text-* used in source)
+     ----------------------------------------- */
+  --text-2xs:  10px;
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-lg:   18px;
+  --text-xl:   20px;
+  --text-2xl:  24px;
+  --text-3xl:  30px;
+  --text-5xl:  48px;
+  --text-display: 80px;  /* poster score */
+
+  /* -----------------------------------------
+     TYPE — Tracking
+     ----------------------------------------- */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+
+  /* -----------------------------------------
+     TYPE — Line height
+     ----------------------------------------- */
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-loose:  1.65;
+
+  /* -----------------------------------------
+     SPACING — 8pt grid
+     ----------------------------------------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* -----------------------------------------
+     RADII
+     ----------------------------------------- */
+  --radius-sm:    8px;
+  --radius-md:    12px;   /* inputs, chips */
+  --radius-lg:    16px;   /* buttons, wells */
+  --radius-xl:    24px;   /* primary cards */
+  --radius-2xl:   32px;   /* expressive nested panels */
+  --radius-poster: 40px;  /* share poster outer */
+  --radius-full:  9999px;
+
+  /* -----------------------------------------
+     SHADOWS / GLOW
+     Minimal mode uses no shadows.
+     Cosmic mode uses a soft iridescent border-glow.
+     ----------------------------------------- */
+  --shadow-none: none;
+  --shadow-glow-cosmic:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 20px 60px -20px rgba(139, 92, 246, 0.25),
+    0 8px 32px -8px rgba(34, 211, 238, 0.10);
+
+  /* Score-ring stroke (used as a CSS conic gradient or SVG stroke) */
+  --ring-stroke: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--cosmic-cyan) 0deg,
+    var(--cosmic-violet) 120deg,
+    var(--cosmic-magenta) 240deg,
+    var(--cosmic-cyan) 360deg
+  );
+
+  /* -----------------------------------------
+     MOTION
+     ----------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast:   150ms;
+  --duration-base:   300ms;
+  --duration-reveal: 700ms;
+  --duration-ring-rotate: 8s;
+
+  /* -----------------------------------------
+     LAYOUT
+     ----------------------------------------- */
+  --container-max: 1152px;   /* max-w-6xl */
+  --gutter-mobile: 20px;
+  --gutter-desktop: 32px;
+}
+
+/* ============================================================
+   SEMANTIC TYPE — re-usable per-role styles
+   Use these classes rather than inline text utilities when you can.
+   ============================================================ */
+
+.u-h1 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-2xl);          /* 24px, "tracking-tight" page heading */
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--fg-1);
+}
+
+.u-h2 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-lg);           /* 18px card heading */
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-snug);
+  color: var(--fg-1);
+}
+
+.u-h3 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-base);
+  color: var(--fg-1);
+}
+
+.u-display {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-5xl);          /* 48px — score "96" */
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--fg-1);
+}
+
+.u-display-xl {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-display);      /* 80px — poster score */
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--fg-1);
+}
+
+.u-body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-2);
+}
+
+.u-body-sm {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--fg-3);
+}
+
+.u-label {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-sm);
+  color: var(--fg-3);
+}
+
+.u-micro {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-xs);
+  color: var(--fg-4);
+}
+
+.u-micro-2xs {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-2xs);
+  color: var(--fg-4);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Use for ALL-CAPS small labels rare in product but defined for completeness */
+.u-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
