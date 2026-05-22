@@ -1,0 +1,39 @@
+{# base.html : shared layout for all pages #}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/favicon.ico">
+
+    <!-- Page title block -->
+    <title>{% block title %}Urania{% endblock %}</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen bg-zinc-950 text-zinc-100">
+
+    <!-- App header -->
+    <header class="border-b border-zinc-800">
+      <div class="max-w-6xl mx-auto px-5 py-5">
+        <h1 class="text-xl font-bold tracking-tight">Urania</h1>
+        <p class="text-xs text-zinc-400">Compatibility snapshot · v0</p>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="max-w-6xl mx-auto px-5 py-10">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800 py-4 text-center text-xs text-zinc-500">
+      Built with FastAPI · Python
+    </footer>
+
+  </body>
+</html>

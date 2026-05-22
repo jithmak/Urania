@@ -1,0 +1,324 @@
+/* ============================================================
+   Urania — Final Site Styles
+   Tokens + cosmic bg + glass + ring + animations
+   ============================================================ */
+@import url("./colors_and_type.css");
+
+/* Glyph font (zodiac, ☾, ✦, etc.) — Inter doesn't include these codepoints.
+   Override --font-sans so the browser falls back per-character for missing glyphs. */
+:root {
+  --font-sans: "Inter", "Apple Symbols", "Segoe UI Symbol",
+               "Noto Sans Symbols 2", "Noto Sans Symbols", "Symbola",
+               ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.u-glyph {
+  font-family: "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols 2",
+               "Noto Sans Symbols", "Symbola", "DejaVu Sans", var(--font-sans);
+  font-feature-settings: normal;
+  line-height: 1;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: #010107;
+  color: var(--fg-1);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+button, input, select, textarea { font-family: inherit; }
+input, select, textarea { color-scheme: dark; }
+input::placeholder { color: var(--fg-4); }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid rgba(139, 92, 246, 0.55); outline-offset: 2px; border-radius: 8px; }
+
+/* Tweakable runtime variables (defaults overridden by JS) */
+:root {
+  --accent-1: #8b5cf6;  /* violet */
+  --accent-2: #22d3ee;  /* cyan */
+  --accent-3: #d946ef;  /* magenta */
+  --accent-4: #ec4899;  /* pink */
+  --cosmic-strength: 1;     /* 0 = off, 0.5 = subtle, 1 = strong */
+  --ring-speed: 8s;
+  --ring-on: 1;
+  --poster-bg-variant: 0;
+}
+
+/* ============================================================
+   COSMIC BACKGROUND — Milky Way galaxy
+   ============================================================ */
+.cosmic-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    /* Galactic core — warm purple-white glow at centre */
+    radial-gradient(ellipse 55% 45% at 52% 48%,
+      color-mix(in oklab, #c09aff 24%, transparent), transparent 55%),
+    /* Upper spiral arm — violet, top-left */
+    radial-gradient(ellipse 65% 55% at 7% 12%,
+      color-mix(in oklab, var(--accent-1) 38%, transparent), transparent 65%),
+    /* Lower spiral arm — teal, bottom-right */
+    radial-gradient(ellipse 70% 58% at 93% 88%,
+      color-mix(in oklab, var(--accent-2) 32%, transparent), transparent 65%),
+    /* Side nebula patch — magenta */
+    radial-gradient(ellipse 44% 42% at 96% 34%,
+      color-mix(in oklab, var(--accent-3) 26%, transparent), transparent 65%),
+    /* Deep bottom warmth */
+    radial-gradient(ellipse 70% 28% at 40% 110%,
+      color-mix(in oklab, var(--accent-1) 18%, transparent), transparent 60%),
+    /* Deep space */
+    #010107;
+  opacity: var(--cosmic-strength);
+  transition: opacity 400ms var(--ease-out);
+}
+.cosmic-bg::before, .cosmic-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+}
+/* Dense drifting star field */
+.cosmic-bg::before {
+  background-image:
+    radial-gradient(2px 2px at 4% 8%,     rgba(255,255,255,0.90) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 8% 14%, rgba(255,255,255,0.85) 50%, transparent 51%),
+    radial-gradient(2.5px 2.5px at 15% 35%, rgba(255,255,255,0.80) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 22% 56%, rgba(255,255,255,0.70) 50%, transparent 51%),
+    radial-gradient(2px 2px at 29% 12%,   rgba(255,255,255,0.75) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 35% 72%, rgba(255,255,255,0.65) 50%, transparent 51%),
+    radial-gradient(2px 2px at 41% 22%,   rgba(255,255,255,0.80) 50%, transparent 51%),
+    radial-gradient(1px 1px at 47% 48%,   rgba(255,255,255,0.60) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 53% 78%, rgba(255,255,255,0.65) 50%, transparent 51%),
+    radial-gradient(2px 2px at 59% 30%,   rgba(255,255,255,0.75) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 67% 12%, rgba(255,255,255,0.60) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 72% 62%, rgba(255,255,255,0.65) 50%, transparent 51%),
+    radial-gradient(2px 2px at 78% 44%,   rgba(255,255,255,0.75) 50%, transparent 51%),
+    radial-gradient(1px 1px at 83% 85%,   rgba(255,255,255,0.55) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 89% 26%, rgba(255,255,255,0.65) 50%, transparent 51%),
+    radial-gradient(1px 1px at 95% 58%,   rgba(255,255,255,0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 12% 90%,   rgba(255,255,255,0.50) 50%, transparent 51%),
+    radial-gradient(1px 1px at 18% 42%,   rgba(255,255,255,0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 26% 76%,   rgba(255,255,255,0.50) 50%, transparent 51%),
+    radial-gradient(1px 1px at 44% 88%,   rgba(255,255,255,0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 56% 5%,    rgba(255,255,255,0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 62% 92%,   rgba(255,255,255,0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 74% 68%,   rgba(255,255,255,0.50) 50%, transparent 51%),
+    radial-gradient(1px 1px at 80% 12%,   rgba(255,255,255,0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 92% 42%,   rgba(255,255,255,0.50) 50%, transparent 51%),
+    radial-gradient(1px 1px at 98% 78%,   rgba(255,255,255,0.45) 50%, transparent 51%);
+  background-size: 700px 700px;
+  animation: drift 240s linear infinite;
+  opacity: 0.85;
+}
+/* Twinkling stars — blue-white & warm-white tints for realism */
+.cosmic-bg::after {
+  background-image:
+    radial-gradient(1px 1px at 6% 25%,    rgba(200,220,255,0.75) 50%, transparent 51%),
+    radial-gradient(1px 1px at 14% 32%,   rgba(255,255,255,0.70) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 22% 8%,  rgba(255,240,200,0.68) 50%, transparent 51%),
+    radial-gradient(1px 1px at 33% 8%,    rgba(255,255,255,0.58) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 38% 62%, rgba(200,220,255,0.62) 50%, transparent 51%),
+    radial-gradient(1px 1px at 46% 38%,   rgba(255,255,255,0.58) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 52% 82%, rgba(255,240,200,0.62) 50%, transparent 51%),
+    radial-gradient(1px 1px at 60% 15%,   rgba(200,220,255,0.62) 50%, transparent 51%),
+    radial-gradient(1px 1px at 68% 55%,   rgba(255,255,255,0.58) 50%, transparent 51%),
+    radial-gradient(1px 1px at 76% 28%,   rgba(200,200,255,0.58) 50%, transparent 51%),
+    radial-gradient(1px 1px at 82% 72%,   rgba(255,255,255,0.52) 50%, transparent 51%),
+    radial-gradient(1px 1px at 90% 45%,   rgba(255,240,200,0.58) 50%, transparent 51%);
+  background-size: 460px 460px;
+  animation: twinkle 7s ease-in-out infinite alternate, drift-rev 380s linear infinite;
+}
+@keyframes drift     { to { background-position: 700px 700px; } }
+@keyframes drift-rev { to { background-position: -460px 460px; } }
+@keyframes twinkle   { from { opacity: 0.5; } to { opacity: 0.95; } }
+
+/* ============================================================
+   MILKY WAY BAND — diagonal nebula sweep
+   5 overlapping ellipses from lower-left → upper-right
+   ============================================================ */
+.nebula-streak {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    /* Bright galactic core boost */
+    radial-gradient(ellipse 30% 16% at 48% 48%, rgba(235,210,255,0.14), transparent 65%),
+    /* Band segments — each slightly brighter toward centre */
+    radial-gradient(ellipse 46% 24% at 10% 76%, rgba(115,65,225,0.22), transparent 70%),
+    radial-gradient(ellipse 56% 28% at 28% 62%, rgba(148,90,252,0.25), transparent 70%),
+    radial-gradient(ellipse 66% 32% at 48% 48%, rgba(172,112,255,0.30), transparent 65%),
+    radial-gradient(ellipse 56% 28% at 68% 36%, rgba(148,90,252,0.25), transparent 70%),
+    radial-gradient(ellipse 46% 24% at 86% 22%, rgba(115,65,225,0.20), transparent 70%);
+  filter: blur(56px);
+  opacity: calc(0.70 * var(--cosmic-strength));
+  animation: milkyway-drift 200s ease-in-out infinite alternate;
+}
+@keyframes milkyway-drift {
+  from { transform: translate(0,    0); }
+  to   { transform: translate(30px, -22px); }
+}
+
+/* ============================================================
+   GLASS & SURFACE UTILITIES
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+}
+.glass-strong {
+  background: rgba(10, 8, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(26px) saturate(130%);
+  -webkit-backdrop-filter: blur(26px) saturate(130%);
+}
+.glow-cosmic {
+  box-shadow:
+    0 20px 60px -24px color-mix(in oklab, var(--accent-1) 40%, transparent),
+    0 8px 32px -8px color-mix(in oklab, var(--accent-2) 22%, transparent);
+}
+.glow-soft {
+  box-shadow:
+    0 12px 40px -20px color-mix(in oklab, var(--accent-1) 30%, transparent);
+}
+
+/* Iridescent border treatment (used on hero cards / poster) */
+.iridescent-border {
+  position: relative;
+}
+.iridescent-border::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--accent-1) 70%, transparent) 0%,
+    color-mix(in oklab, var(--accent-2) 70%, transparent) 35%,
+    color-mix(in oklab, var(--accent-3) 65%, transparent) 70%,
+    color-mix(in oklab, var(--accent-4) 65%, transparent) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: calc(0.5 + 0.5 * var(--cosmic-strength));
+  pointer-events: none;
+}
+
+/* ============================================================
+   RING — animated iridescent score ring
+   ============================================================ */
+.ring-cosmic {
+  background: conic-gradient(from 200deg at 50% 50%,
+    var(--accent-2) 0deg,
+    var(--accent-1) 110deg,
+    var(--accent-3) 220deg,
+    var(--accent-4) 290deg,
+    var(--accent-2) 360deg);
+  filter: drop-shadow(0 0 14px color-mix(in oklab, var(--accent-1) 60%, transparent))
+          drop-shadow(0 0 28px color-mix(in oklab, var(--accent-2) 40%, transparent));
+  animation: ring-spin var(--ring-speed) linear infinite,
+             ring-glow-pulse 3s ease-in-out infinite alternate;
+}
+.ring-cosmic.no-spin { animation: ring-glow-pulse 3s ease-in-out infinite alternate; }
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+@keyframes ring-glow-pulse {
+  from { filter: drop-shadow(0 0 10px color-mix(in oklab, var(--accent-1) 50%, transparent))
+                 drop-shadow(0 0 22px color-mix(in oklab, var(--accent-2) 30%, transparent)); }
+  to   { filter: drop-shadow(0 0 28px color-mix(in oklab, var(--accent-1) 95%, transparent))
+                 drop-shadow(0 0 54px color-mix(in oklab, var(--accent-2) 75%, transparent))
+                 drop-shadow(0 0 12px color-mix(in oklab, var(--accent-3) 40%, transparent)); }
+}
+
+/* Pulse glow under ring — initial bloom then breathes continuously */
+.ring-pulse {
+  position: absolute; inset: -18%;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in oklab, var(--accent-1) 35%, transparent),
+    transparent 60%);
+  filter: blur(20px);
+  opacity: 0;
+  animation: ring-bloom 1.4s var(--ease-out) 0.2s forwards,
+             ring-breathe 3.5s ease-in-out 1.6s infinite alternate;
+  pointer-events: none;
+}
+@keyframes ring-bloom {
+  0%   { opacity: 0;    transform: scale(0.6); }
+  50%  { opacity: 0.9;  transform: scale(1.05); }
+  100% { opacity: 0.35; transform: scale(1); }
+}
+@keyframes ring-breathe {
+  from { opacity: 0.25; transform: scale(0.97); }
+  to   { opacity: 0.62; transform: scale(1.05); }
+}
+
+/* Zodiac glyph breathing glow */
+@keyframes glyphGlow {
+  from { filter: drop-shadow(0 0 6px  color-mix(in oklab, var(--accent-2) 55%, transparent)); }
+  to   { filter: drop-shadow(0 0 28px color-mix(in oklab, var(--accent-1) 90%, transparent))
+                 drop-shadow(0 0 52px color-mix(in oklab, var(--accent-2) 45%, transparent)); }
+}
+.glyph-glow { animation: glyphGlow 3s ease-in-out infinite alternate; }
+
+/* ============================================================
+   COMMON ANIMATIONS
+   ============================================================ */
+.t-fast   { transition: all var(--duration-fast) var(--ease-out); }
+.t-base   { transition: all var(--duration-base) var(--ease-out); }
+.t-reveal { transition: all var(--duration-reveal) var(--ease-out); }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 600ms var(--ease-out) both; }
+
+@keyframes fade-in {
+  from { opacity: 0; } to { opacity: 1; }
+}
+.fade-in { animation: fade-in 500ms var(--ease-out) both; }
+
+@keyframes bar-fill {
+  from { width: 0; }
+}
+
+/* ============================================================
+   CHIPS (intentions selector)
+   ============================================================ */
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--fg-2);
+  font-weight: 500; font-size: 15px;
+  cursor: pointer;
+  transition: all 200ms var(--ease-out);
+  backdrop-filter: blur(8px);
+}
+.chip:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--fg-1);
+}
+.chip.selected {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--fg-on-primary);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 760px) {
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .heading-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+  .heading-row .actions { width: 100%; }
+}
+
+/* Slide-down notch for the small dev nav, hidden by default */
+.app-shell { position: relative; min-height: 100vh; }
+
+/* Scoped styles to prevent native date/time icon clashing on dark */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  opacity: 0.7;
+  cursor: pointer;
+}

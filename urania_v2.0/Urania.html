@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Urania · v2</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='url(%23g)' stroke-width='6'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='.5' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles/app.css" />
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <!-- html-to-image for PNG poster export -->
+  <script src="https://unpkg.com/html-to-image@1.11.11/dist/html-to-image.js"></script>
+</head>
+<body data-screen-label="Urania">
+  <div id="root"></div>
+
+  <!-- Plain JS engine (no JSX) -->
+  <script src="engine.js?v=2.4"></script>
+
+  <!-- JSX modules -->
+  <script type="text/babel" src="tweaks-panel.jsx?v=2.4"></script>
+  <script type="text/babel" src="components.jsx?v=2.4"></script>
+  <script type="text/babel" src="screens.jsx?v=2.4"></script>
+  <script type="text/babel" src="share.jsx?v=2.4"></script>
+  <script type="text/babel" src="app.jsx?v=2.4"></script>
+</body>
+</html>
